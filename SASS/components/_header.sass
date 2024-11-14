@@ -1,0 +1,27 @@
+@use "../utils/_main" as utils
+    
+.header
+    display: flex
+    padding: 1.5rem 0
+    // &:hover
+    //     background-color: black
+    
+    &__logo //.header__logo répète le parent Ne pas mettre de point
+        width: 10rem
+        flex-shrink: 0 //tu ne fais pas moins de 10rem tu ne t'écrase pas 
+        margin-right: 2.5rem
+    
+    &__nav-bar
+        flex-grow: 1 //tu prends toute la place quil y a 
+        display: flex
+        justify-content: space-between
+        align-items: center    
+    
+    
+    // &__menu, &__account-pages factorisé en &__list
+    &__list
+        display: flex
+        column-gap: 1.25rem
+        @extend %paragraphe
+        @extend %text-grey
+        

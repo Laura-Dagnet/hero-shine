@@ -1,0 +1,51 @@
+//trouver les points commun entre tous les boutons pr creer un bouton type et ensuite d'autres avec des variations
+@use '../utils/_main' as utils
+
+
+
+//mixin local n'existe uniqument sur _button
+@mixin hover($color, $amount)
+    &:hover
+        background-color: darken($color, $amount)
+    
+.button
+    border-radius: 1rem
+    padding: 0.5rem 1.5rem
+    font-weight: 500
+    transition: 0.5s ease-in
+    @extend %paragraphe
+    // display: flex //inline-flex :melange de inline et flex car flex prend tout son contener
+    +utils.flex(center)
+    margin-top: 1rem
+
+    &:not(&--blue):hover //tu appliques .button  sauf à mon bouton --blue
+        color: utils.$blue
+
+    &__icon
+        fill: inherit// herite de son parent
+        margin-left: 0.5rem
+
+    &--blue 
+        @extend .button
+        background-color: utils.$blue
+        color: utils.$white
+        fill: utils.$white
+        @include hover(utils.$blue, 20%)
+
+    
+        // background-color: utils.$blue-dark
+        //fonction rajoute moi du noir à couleur $blue à 10% bien pr faire de loppacité:
+        //fonction rajoute moi du blanc à couleur $blue à 10% :
+        // background-color: lighten(utils.$blue, 10%)
+
+    &--light-blue
+        @extend .button
+        background-color: utils.$blue-middle-light
+        color: utils.$blue
+        fill: utils.$blue
+        @include hover(utils.$blue-middle-light, 10%)
+        
+        // &:hover
+        //     background-color: darken(utils.$blue-middle-light, 10%)
+
+    

@@ -1,0 +1,74 @@
+@use '../utils/_main' as utils
+
+// en BEM on ne reutilise pas les classes, ici ON ne doit pas utilier la 
+// classe flux pour faire du display flex on pert la logique du bem
+
+.home-cover
+    // background-color: utils.$blue-light
+    background-image: linear-gradient(180deg, utils.$blue-light 0 80%, utils.$white 80% 100%)
+    &__title
+        @extend %title-1
+        @extend %text-grey-dark
+        span
+            @extend %text-blue
+
+    &__paragraphe
+        @extend %paragraphe
+        @extend %text-grey
+        margin-top: 3rem
+
+    &__container 
+        +utils.flex(flex-start)
+    // +utils.responsive(small-laptop) => ne fonctionne pas
+            //+utils.flex($direction: column) => ne fonctionne pas
+
+    &__text
+        margin-top: 6rem
+        flex-grow: 1 //justify-content sert a rien car flex-grow pousse les medias 
+        padding: 0 4%
+
+    &__cta
+        padding-right: 4rem
+        margin-top: 2rem
+        
+        
+    &__list-advantages
+        margin-top: 0.75rem
+        +utils.flex(flex-start)
+        gap: 1rem
+    
+
+    &__advantages //center pour recaser le check aligner ac le text
+        padding-left: 0.5rem
+        +utils.flex(flex-start, center)
+        @extend %paragraphe-small
+    
+        
+
+    &__check
+        width: 1rem
+        height: 1rem
+
+    &__media
+        width: 50%
+        position: relative //parent de __play - media conteneur de play
+        flex-shrink: 0
+            
+    &__image //pour ne pas que l'image depasse de son conteneur veriafle ac un un background color de son conteneur
+        width: 100%
+        height: auto
+    
+    &__play //agrandir le svg
+        position: absolute // permet de superposer - a placer sur l'enfant fonctionne ac le parent (position relative qui est __media)
+        top: 50%
+        left: 50%
+        transform: translateX(-50%) translateY(-50%) //decale par rapport à lui meme
+        background-color: utils.$grey-dark      
+        width: 5rem
+        height: 5rem
+        border-radius: 100%
+        +utils.flex()
+        fill: utils.$white
+
+    
+    
